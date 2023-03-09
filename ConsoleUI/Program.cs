@@ -13,7 +13,7 @@ namespace ConsoleUI
             
             
             InMemoryCarDal inMemoryCar=new InMemoryCarDal();
-            inMemoryCar.Add(new Car { CarId=6, BrandId=2, ColorId=11, DailyPrice=7500, ModelYear=2021, Description="Skoda Superb 2.0"}) ;
+            inMemoryCar.Add(new Car { CarId=6, BrandId=2, ColourId=11, DailyPrice=7500, ModelYear=2021, Description="Skoda Superb 2.0"}) ;
             foreach (var car in inMemoryCar.GetAll())
             {
                 Console.WriteLine(car.Description);

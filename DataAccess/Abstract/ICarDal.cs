@@ -2,16 +2,12 @@
 using System.Collections.Generic;
 using System.Text;
 using Entities.Concrete;
+using Entities.Dto;
 
 namespace DataAccess.Abstract
 {
-    public interface ICarDal
+    public interface ICarDal:IEntityRepository<Car>
     {
-        List<Car> GetById(Car car);
-        List<Car> GetAll();
-        void Add(Car car);
-        void Update(Car car);
-        void Delete(Car car);
-
+        List<CarDetailsDto> GetCarDetails();
     }
 }
