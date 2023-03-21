@@ -1,4 +1,5 @@
 ﻿using Business.Concrete;
+using DataAccess.Concrete.EntityFramework;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
 using System;
@@ -10,22 +11,50 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            
-            
-            InMemoryCarDal inMemoryCar=new InMemoryCarDal();
-            inMemoryCar.Add(new Car { CarId=6, BrandId=2, ColourId=11, DailyPrice=7500, ModelYear=2021, Description="Skoda Superb 2.0"}) ;
-            foreach (var car in inMemoryCar.GetAll())
+            //ProductDetaiTest();
+            //AddMethod();
+            //DeleteMethod();
+            //GetTest();
+                        
+        }
+
+        private static void GetTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            carManager.Get(2);
+        }
+
+        private static void DeleteMethod()
+        {
+            CarManager carManager2 = new CarManager(new EfCarDal());
+            carManager2.Delete(new Car { CarId = 5 });
+
+            foreach (var car in carManager2.GetProductDetails())
             {
-                Console.WriteLine(car.Description);
+                Console.WriteLine(car);
             }
+        }
+
+        private static void ProductDetaiTest()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+
+            foreach (var car in carManager.GetProductDetails())
+            {
+                Console.WriteLine(car.CarId + " / " + car.BrandName + " / " + car.ColourName);
+            }
+        }
+
+        private static void AddMethod()
+        {
+            CarManager carManager1 = new CarManager(new EfCarDal());
+            carManager1.Add(new Car { CarId = 7, BrandId = 3, ColourId = 2, DailyPrice = 1200 });
             Console.WriteLine("--------");
-            CarManager carManager = new CarManager(new InMemoryCarDal());
-            foreach (var car in carManager.GetAll())
+
+            foreach (var item in carManager1.GetProductDetails())
             {
-                Console.WriteLine(car.Description);
+                Console.WriteLine(item.CarId + " / " + item.BrandName + " / " + item.ColourName);
             }
-
-
         }
     }
 }
