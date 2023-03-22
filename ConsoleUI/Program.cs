@@ -14,15 +14,15 @@ namespace ConsoleUI
             //ProductDetaiTest();
             //AddMethod();
             //DeleteMethod();
-            //GetTest();
-                        
+
+            CarManager carManager = new CarManager(new EfCarDal());
+            
+            Console.WriteLine(carManager.GetById(1).BrandId);
+            
+         
         }
 
-        private static void GetTest()
-        {
-            CarManager carManager = new CarManager(new EfCarDal());
-            carManager.Get(2);
-        }
+
 
         private static void DeleteMethod()
         {
@@ -49,7 +49,7 @@ namespace ConsoleUI
         {
             CarManager carManager1 = new CarManager(new EfCarDal());
             carManager1.Add(new Car { CarId = 7, BrandId = 3, ColourId = 2, DailyPrice = 1200 });
-            Console.WriteLine("--------");
+            
 
             foreach (var item in carManager1.GetProductDetails())
             {

@@ -32,11 +32,7 @@ namespace Business.Concrete
             _carDal.Update(car);
         }
 
-        public Car Get(int id)
-        {
-            return _carDal.Get(p => p.CarId == id);
-        }
-
+       
 
         //public void Add(Car car)
         //{
@@ -74,6 +70,14 @@ namespace Business.Concrete
         public List<ProductDetailDto> GetProductDetails()
         {
             return _carDal.GetCarDetails();
+        }
+
+        public Car GetById(int carId)
+        {    
+            
+            {
+                return _carDal.Get(p => p.CarId == carId);
+            }            
         }
     }
 }
