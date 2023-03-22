@@ -11,18 +11,31 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //ProductDetaiTest();
+            //ProductDetailTest();
             //AddMethod();
             //DeleteMethod();
-
+            //GetByIdMethod();
+            //GetAllMethod();
             CarManager carManager = new CarManager(new EfCarDal());
+            carManager.Update(new Car { CarId = 1, BrandId = 1, ColourId = 1, DailyPrice = 1111, Description = "1.6 Tdi", ModelYear = 2020 });
             
-            Console.WriteLine(carManager.GetById(1).BrandId);
-            
-         
+
         }
 
+        private static void GetAllMethod()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            foreach (var car in carManager.GetAll())
+            {
+                Console.WriteLine(car.ModelYear + " / " + car.ColourId);
+            }
+        }
 
+        private static void GetByIdMethod()
+        {
+            CarManager carManager = new CarManager(new EfCarDal());
+            Console.WriteLine(carManager.GetById(2).BrandId);
+        }
 
         private static void DeleteMethod()
         {
@@ -35,7 +48,7 @@ namespace ConsoleUI
             }
         }
 
-        private static void ProductDetaiTest()
+        private static void ProductDetailTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
 
@@ -48,7 +61,7 @@ namespace ConsoleUI
         private static void AddMethod()
         {
             CarManager carManager1 = new CarManager(new EfCarDal());
-            carManager1.Add(new Car { CarId = 7, BrandId = 3, ColourId = 2, DailyPrice = 1200 });
+            carManager1.Add(new Car { CarId = 5, BrandId = 3, ColourId = 2, DailyPrice = 1200 });
             
 
             foreach (var item in carManager1.GetProductDetails())

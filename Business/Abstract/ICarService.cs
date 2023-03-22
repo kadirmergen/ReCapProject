@@ -14,5 +14,7 @@ namespace Business.Abstract
         List<ProductDetailDto> GetProductDetails(); 
         
         Car GetById(int carId);
+
+       
     }
 }

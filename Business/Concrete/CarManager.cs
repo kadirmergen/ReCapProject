@@ -32,7 +32,7 @@ namespace Business.Concrete
             _carDal.Update(car);
         }
 
-       
+        
 
         //public void Add(Car car)
         //{
@@ -73,8 +73,7 @@ namespace Business.Concrete
         }
 
         public Car GetById(int carId)
-        {    
-            
+        {                
             {
                 return _carDal.Get(p => p.CarId == carId);
             }            
