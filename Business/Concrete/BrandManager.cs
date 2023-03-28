@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -16,9 +17,9 @@ namespace Business.Concrete
             _brandDal = brandDal;
         }
 
-        public List<Brand> GetCarsByBrandId(int id)
+        public IDataResult<Brand> GetCarsByBrandId(int brandId)
         {
-            throw new NotImplementedException();
+           return new SuccessDataResult<Brand> (_brandDal.Get(p => p.BrandId == brandId));
         }
         
     }

@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
+using Core.Utilities.Results;
 using Entities.Concrete;
+using DataAccess.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,16 +10,16 @@ namespace Business.Concrete
 {
     public class ColourManager : IColourService
     {
-        IColourService _colourService;
+        IColourDal _colourDal;
 
-        public ColourManager(IColourService colourService)
+        public ColourManager(IColourDal colourDal)
         {
-            _colourService = colourService;
+            _colourDal = colourDal;
         }
 
-        public List<Car> GetCarsByColourId(int id)
+        public IDataResult<Colour> GetCarsByColourId(int colourId)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<Colour> (_colourDal.Get(p=>p.ColourId==colourId));
         }
     }
 }
