@@ -1,4 +1,6 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -9,7 +11,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    public class CarManager : ICarService,IBrandService, IColourService
+    public class CarManager : ICarService
     {
         ICarDal _carDal;
         public CarManager(ICarDal carDal)
@@ -17,19 +19,30 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public void Add(Car car)
+        public IResult Add(Car car)
         {
+
+            if (car.DailyPrice>30000)
+            {
+                return new ErrorResult(Messages.CarPriceTooMuch);
+            }
             _carDal.Add(car);
+
+            return new SuccessResult(Messages.CarAdded);
         }
 
-        public void Delete(Car car)
+        public IResult Delete(Car car)
         {
             _carDal.Delete(car);
+
+            return new SuccessResult(Messages.CarDeleted) ;
         }
 
-        public void Update(Car car)
+        public IResult Update(Car car)
         {
             _carDal.Update(car);
+
+            return new SuccessResult(Messages.CarUpdated);
         }
 
         
@@ -43,39 +56,29 @@ namespace Business.Concrete
         //    else
         //    {
         //        _carDal.Add(car);
-        //    }
-            
+        //    }            
         //}
 
 
-        public List<Car> GetAll()
+        public IDataResult<List<Car>> GetAll()
         {
+            if (DateTime.Now.Hour==13)
+            {
+                return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
+            }
 
-            return _carDal.GetAll();
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
         }
-            
-
-        public List<Car> GetCarsByBrandId(int id)
+                
+        public IDataResult<List<ProductDetailDto>> GetProductDetails()
         {
-            throw new NotImplementedException();
-        }
-
-       
-
-        public List<Car> GetCarsByColourId(int id)
-        {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<ProductDetailDto>> (_carDal.GetCarDetails());
         }
 
-        public List<ProductDetailDto> GetProductDetails()
-        {
-            return _carDal.GetCarDetails();
-        }
-
-        public Car GetById(int carId)
+        public IDataResult<Car> GetById(int carId)
         {                
             {
-                return _carDal.Get(p => p.CarId == carId);
+                return new SuccessDataResult<Car> (_carDal.Get(p => p.CarId == carId));
             }            
         }
     }
