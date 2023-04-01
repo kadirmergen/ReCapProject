@@ -11,20 +11,18 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            //ProductDetailTest();
+            //ProductDetailDtoTest();
             //AddMethod();
             //DeleteMethod();
             //GetByIdMethod();
             //GetAllMethod();
             //UpdatmMethod();
 
-            CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetProductDetails().Data)
-            {
-                Console.WriteLine(car.BrandName+" / "+car.ColourName);
-            }
+            CustomersForCarManager customers = new CustomersForCarManager(new EfCustomersForCarDal());
+            var result = customers.Add(new CustomersForCar { UserId = 3, CompanyName = "LetGo Oto" });
+           
 
-        }
+        }       
 
         private static void UpdatmMethod()
         {
@@ -58,7 +56,7 @@ namespace ConsoleUI
             }
         }
 
-        private static void ProductDetailTest()
+        private static void ProductDetailDtoTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
 
