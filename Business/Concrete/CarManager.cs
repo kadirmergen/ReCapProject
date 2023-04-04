@@ -70,9 +70,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Car>>(_carDal.GetAll(), Messages.CarListed);
         }
                 
-        public IDataResult<List<ProductDetailDto>> GetProductDetails()
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
         {
-            return new SuccessDataResult<List<ProductDetailDto>> (_carDal.GetCarDetails());
+            return new SuccessDataResult<List<CarDetailDto>> (_carDal.GetCarDetails());
         }
 
         public IDataResult<Car> GetById(int carId)
