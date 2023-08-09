@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -19,10 +21,7 @@ namespace Business.Concrete
 
         public IResult Add(CustomersForCar customersForCar)
         {
-            if (customersForCar.CompanyName.Length<5)
-            {
-                return new ErrorResult(Messages.InvalidCompanyName);
-            }
+            ValidationTool.Validate(new CustomersForCarValidator(), customersForCar);
 
             _customersForCarDal.Add(customersForCar);
 
