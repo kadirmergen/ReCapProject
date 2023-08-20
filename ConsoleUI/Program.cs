@@ -45,7 +45,7 @@ namespace ConsoleUI
             Console.WriteLine(carManager.GetById(2).Data);
         }
 
-        private static void DeleteMethod()
+        /*private static void DeleteMethod()
         {
             CarManager carManager2 = new CarManager(new EfCarDal());
             carManager2.Delete(new Car { CarId = 5 });
@@ -76,6 +76,6 @@ namespace ConsoleUI
             {
                 Console.WriteLine(item.CarId + " / " + item.BrandName + " / " + item.ColourName);
             }
-        }
+        }*/
     }
 }
