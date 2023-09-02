@@ -9,9 +9,9 @@ namespace WebAPI.Controllers
     [ApiController]
     public class CustomersForCarController : ControllerBase
     {
-        ICustomersForCarService _customersForCarService;
+        ICustomerService _customersForCarService;
 
-        public CustomersForCarController(ICustomersForCarService customersForCarService)
+        public CustomersForCarController(ICustomerService customersForCarService)
         {
             _customersForCarService = customersForCarService;
         }
@@ -28,7 +28,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(CustomersForCar customersForCar)
+        public IActionResult Delete(Customer customersForCar)
         {
             var result = _customersForCarService.Delete(customersForCar);
             if (result.Success)
@@ -38,7 +38,7 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("update")]
-        public IActionResult Update(CustomersForCar customersForCar)
+        public IActionResult Update(Customer customersForCar)
         {
             var result = _customersForCarService.Update(customersForCar);
             if (result.Success)
@@ -62,7 +62,7 @@ namespace WebAPI.Controllers
         
 
         [HttpPost("add")]
-        public IActionResult Add(CustomersForCar customersForCar)
+        public IActionResult Add(Customer customersForCar)
         {
             var result = _customersForCarService.Add(customersForCar);
             if (result.Success)

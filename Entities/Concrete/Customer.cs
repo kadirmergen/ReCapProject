@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Entities.Concrete
 {
-    public class CustomersForCar:IEntity
+    public class Customer:IEntity
     {
         [Key]
         public int UserId { get; set; }

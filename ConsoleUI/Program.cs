@@ -18,8 +18,8 @@ namespace ConsoleUI
             //GetAllMethod();
             //UpdatmMethod();
 
-            CustomersForCarManager customers = new CustomersForCarManager(new EfCustomersForCarDal());
-            var result = customers.Add(new CustomersForCar { UserId = 3, CompanyName = "LetGo Oto" });
+            CustomerManager customers = new CustomerManager(new EfCustomerDal());
+            var result = customers.Add(new Customer { UserId = 3, CompanyName = "LetGo Oto" });
            
 
         }       

@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Business.ValidationRules.FluentValidation
 {
-    public class CustomersForCarValidator: AbstractValidator<CustomersForCar>
+    public class CustomerValidator: AbstractValidator<Customer>
     {
-        public CustomersForCarValidator()
+        public CustomerValidator()
         {
             RuleFor(c=>c.UserId).NotEmpty();
             RuleFor(c=>c.CompanyName).MinimumLength(5).MaximumLength(25);
