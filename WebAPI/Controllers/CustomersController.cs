@@ -7,19 +7,19 @@ namespace WebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CustomersForCarController : ControllerBase
+    public class CustomersController : ControllerBase
     {
-        ICustomerService _customersForCarService;
+        ICustomerService _customerService;
 
-        public CustomersForCarController(ICustomerService customersForCarService)
+        public CustomersController(ICustomerService customerService)
         {
-            _customersForCarService = customersForCarService;
+            _customerService = customerService;
         }
 
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            var result = _customersForCarService.GetAll();
+            var result = _customerService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
@@ -28,9 +28,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("delete")]
-        public IActionResult Delete(Customer customersForCar)
+        public IActionResult Delete(Customer customer)
         {
-            var result = _customersForCarService.Delete(customersForCar);
+            var result = _customerService.Delete(customer);
             if (result.Success)
             {
                 return Ok(result);
@@ -38,9 +38,9 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
         [HttpPost("update")]
-        public IActionResult Update(Customer customersForCar)
+        public IActionResult Update(Customer customer)
         {
-            var result = _customersForCarService.Update(customersForCar);
+            var result = _customerService.Update(customer);
             if (result.Success)
             {
                 return Ok(result);
@@ -51,7 +51,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyid")]
         public IActionResult GetById(int customerId)
         {
-            var result = _customersForCarService.GetById(customerId);
+            var result = _customerService.GetById(customerId);
             if (result.Success)
             {
                 return Ok(result);
@@ -62,9 +62,9 @@ namespace WebAPI.Controllers
         
 
         [HttpPost("add")]
-        public IActionResult Add(Customer customersForCar)
+        public IActionResult Add(Customer customer)
         {
-            var result = _customersForCarService.Add(customersForCar);
+            var result = _customerService.Add(customer);
             if (result.Success)
             {
                 return Ok(result);
